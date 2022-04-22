@@ -14,7 +14,7 @@
 //12. Vence o melhor de 5 
 
 class RockPaperScissors {
-    constructor() {
+    constructor(maxRounds) {
         this.personPoints = 0
         this.cpuPoints = 0
         this.personsCurrentChoice = ''
@@ -23,6 +23,7 @@ class RockPaperScissors {
         this.roundsPlayed = 0
         this.gameWinner = ''
         this.gameOver = false
+        this.maxRounds = maxRounds
     }
 
     getCpuChoice() {
@@ -60,7 +61,7 @@ class RockPaperScissors {
     }
 
     checkGameOver() {
-        if(this.roundsPlayed === 5) {
+        if(this.roundsPlayed === this.maxRounds) {
             this.gameOver = true
             if(this.personPoints > this.cpuPoints) {
                 this.gameWinner = 'person'

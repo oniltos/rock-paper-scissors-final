@@ -20,7 +20,7 @@ const displayCpuChoice = document.querySelector('.cpu-choice .choice')
 const displayPersonScore = document.querySelector('.person-score span')
 const displayCpuScore = document.querySelector('.cpu-score span')
 
-const game = new RockPaperScissors()
+const game = new RockPaperScissors(3)
 
 function playGame(event) {
     const choice = event.currentTarget.getAttribute('id')
