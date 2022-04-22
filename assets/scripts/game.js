@@ -11,7 +11,7 @@
 
 
 //11. Criar uma classe para o Jogo X
-//12. Vence o melhor de 5
+//12. Vence o melhor de 5 
 
 class RockPaperScissors {
     constructor() {
@@ -20,6 +20,8 @@ class RockPaperScissors {
         this.personsCurrentChoice = ''
         this.cpusCurrentChoice = ''
         this.roundWinner = null
+        this.roundsPlayed = 0
+        this.gameWinner = ''
         this.gameOver = false
     }
 
@@ -31,9 +33,13 @@ class RockPaperScissors {
     }
 
     play(personChoice) {
-        this.personsCurrentChoice = personChoice
-        this.cpusCurrentChoice = this.getCpuChoice()
-        this.checkRoundWinner()
+        if(!this.gameOver) {
+            this.personsCurrentChoice = personChoice
+            this.cpusCurrentChoice = this.getCpuChoice()
+            this.checkRoundWinner()
+            this.roundsPlayed ++
+        }
+
         return this
     }
 
@@ -53,8 +59,27 @@ class RockPaperScissors {
         }
     }
 
+    checkGameOver() {
+        if(this.roundsPlayed === 5) {
+            this.gameOver = true
+            if(this.personPoints > this.cpuPoints) {
+                this.gameWinner = 'person'
+            } else if (this.personPoints < this.cpuPoints) {
+                this.gameWinner = 'cpu'
+            }
+        }
+
+        return this.gameOver
+    }
+
     reset() {
         this.personPoints = 0
         this.cpuPoints = 0
+        this.personsCurrentChoice = ''
+        this.cpusCurrentChoice = ''
+        this.roundWinner = null
+        this.roundsPlayed = 0
+        this.gameWinner = ''
+        this.gameOver = false
     }
 }

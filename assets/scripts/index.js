@@ -41,6 +41,13 @@ function playGame(event) {
     
     displayPersonScore.innerHTML = game.personPoints
     displayCpuScore.innerHTML = game.cpuPoints
+
+    if(game.checkGameOver()) {
+        setTimeout(() => {
+            alert('Game Over! The winner is the ' + game.gameWinner)
+        }, 40)
+        
+    }
 }
 
 function enableButtons() {
@@ -56,9 +63,9 @@ function disableButtons() {
 }
 
 function resetGame() {
-    reset()
-    displayPersonScore.innerHTML = personPoints
-    displayCpuScore.innerHTML = cpuPoints
+    game.reset()
+    displayPersonScore.innerHTML = game.personPoints
+    displayCpuScore.innerHTML = game.cpuPoints
     displayPersonChoice.innerHTML = ''
     displayCpuChoice.innerHTML = ''
     disableButtons()
