@@ -1,3 +1,15 @@
+//1. For para eventos em botões
+//2. Refac de seletores
+//3. Alerta para vencedor
+//4. Animação para escolha
+//5. Audio para escolha
+//6. Audio para vencedor
+
+
+
+
+
+
 const btnRock = document.getElementById('rock')
 const btnPaper = document.getElementById('paper')
 const btnScissors = document.getElementById('scissors')
@@ -8,26 +20,27 @@ const displayCpuChoice = document.querySelector('.cpu-choice .choice')
 const displayPersonScore = document.querySelector('.person-score span')
 const displayCpuScore = document.querySelector('.cpu-score span')
 
+const game = new RockPaperScissors()
+
 function playGame(event) {
     const choice = event.currentTarget.getAttribute('id')
-    const round = play(choice)
-    console.log(round)
+    const round = game.play(choice)
     
     displayPersonChoice.innerHTML = ''
     displayCpuChoice.innerHTML = ''
-    
+
     const personChoiceImage = document.createElement('img')
-    personChoiceImage.setAttribute('src', `./assets/img/${round.personChoice}.svg`)
+    personChoiceImage.setAttribute('src', `./assets/img/${round.personsCurrentChoice}.svg`)
     personChoiceImage.setAttribute('width', '50px')
     displayPersonChoice.appendChild(personChoiceImage)
     
     const cpuChoiceImage = document.createElement('img')
-    cpuChoiceImage.setAttribute('src', `./assets/img/${round.cpuChoice}.svg`)
+    cpuChoiceImage.setAttribute('src', `./assets/img/${round.cpusCurrentChoice}.svg`)
     cpuChoiceImage.setAttribute('width', '50px')
     displayCpuChoice.appendChild(cpuChoiceImage)
     
-    displayPersonScore.innerHTML = personPoints
-    displayCpuScore.innerHTML = cpuPoints
+    displayPersonScore.innerHTML = game.personPoints
+    displayCpuScore.innerHTML = game.cpuPoints
 }
 
 function enableButtons() {
