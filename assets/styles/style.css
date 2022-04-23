@@ -1,13 +1,16 @@
 /**
-* Container para jogo
+* Container para jogo X
 * Esquema de cores
-* Centralização
-* Estilização de botões
+* Centralização X
+* Estilização de botões X
 * Animação ou cor para vencedor
 */
 
 html {
     font-family: 'Major Mono Display', monospace;
+    background-color: rgb(30, 7, 65);
+    color: rgb(241,234,209);
+    border-color: rgb(241,234,209)
 }
 
 .container {
@@ -31,11 +34,12 @@ h1 {
     width: 150px;
     height: 100px;
     border-radius: 5px;
-    border: dashed 1px #333
+    border: dashed 1px 
 }
 
 .choices img {
     width: 75px;
+    filter: invert(84%) sepia(27%) saturate(156%) hue-rotate(4deg) brightness(109%) contrast(89%);
 }
 
 .choice {
@@ -49,7 +53,7 @@ h1 {
     margin: 50px auto 0 auto;
     display: flex;
     justify-content: space-around;
-    border: 1px dashed purple;
+    border: 1px dashed;
     margin-bottom: 10px
 }
 
@@ -83,10 +87,16 @@ button {
     border: none;
     padding: 5px 10px;
     border-radius: 2px;
+    background-color: rgb(241,234,209);
     font-family: 'Major Mono Display', monospace;
 }
 
 #start {
-    background: blueviolet;
-    color: #fff
+    color: rgb(241,234,209);
+    background: rgb(45,139,146);
+}
+
+#reset {
+    color: rgb(241,234,209);
+    background-color: rgb(132,181,162);
 }
