@@ -15,6 +15,7 @@ const btnPaper = document.getElementById('paper')
 const btnScissors = document.getElementById('scissors')
 const btnReset = document.getElementById('reset')
 const btnStart = document.getElementById('start')
+const btnAudio = document.getElementById('audio')
 const displayPersonChoice = document.querySelector('.person-choice')
 const displayCpuChoice = document.querySelector('.cpu-choice')
 const displayPersonScore = document.querySelector('.person-score span')
@@ -26,7 +27,6 @@ const tieAudio = document.getElementById('tie-audio')
 
 
 const game = new RockPaperScissors(3)
-gameBgAudio.play()
 
 
 function playGame(event) {
@@ -73,6 +73,7 @@ function playGame(event) {
 }
 
 function enableButtons() {
+    gameBgAudio.play()
     btnRock.removeAttribute('disabled')
     btnPaper.removeAttribute('disabled')
     btnScissors.removeAttribute('disabled')
@@ -95,6 +96,20 @@ function resetGame() {
     disableButtons()
 }
 
+function toogleAudio() {
+    if(gameBgAudio.classList.contains('bg-audio-active')) {
+        gameBgAudio.pause()
+        gameBgAudio.classList.remove('bg-audio-active')
+        gameBgAudio.classList.add('bg-audio-inactive')
+        btnAudio.innerText = 'Music OFF'
+    } else {
+        gameBgAudio.play()
+        gameBgAudio.classList.remove('bg-audio-inactive')
+        gameBgAudio.classList.add('bg-audio-active')
+        btnAudio.innerText = 'Music ON'
+    }
+}
+
 const choiceButtons = document.querySelectorAll('.choice-button')
 choiceButtons.forEach((button) => {
     button.addEventListener('click', playGame)
@@ -102,3 +117,4 @@ choiceButtons.forEach((button) => {
 
 btnReset.addEventListener('click', resetGame)
 btnStart.addEventListener('click', enableButtons)
+btnAudio.addEventListener('click', toogleAudio)
