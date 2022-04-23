@@ -19,8 +19,15 @@ const displayPersonChoice = document.querySelector('.person-choice')
 const displayCpuChoice = document.querySelector('.cpu-choice')
 const displayPersonScore = document.querySelector('.person-score span')
 const displayCpuScore = document.querySelector('.cpu-score span')
+const winAudio = document.getElementById('win-audio')
+const loseAudio = document.getElementById('lose-audio')
+const gameBgAudio = document.getElementById('game-bg-audio')
+const tieAudio = document.getElementById('tie-audio')
+
 
 const game = new RockPaperScissors(3)
+gameBgAudio.play()
+
 
 function playGame(event) {
     displayPersonChoice.classList.remove('animate-blink')
@@ -47,8 +54,14 @@ function playGame(event) {
 
     if(game.roundWinner === 'person') {
         displayPersonChoice.classList.add('animate-blink')
+        winAudio.play()
     } else if (game.roundWinner === 'cpu') {
         displayCpuChoice.classList.add('animate-blink')
+        loseAudio.play()
+    } else {
+        displayPersonChoice.classList.add('animate-blink')
+        displayCpuChoice.classList.add('animate-blink')
+        tieAudio.play()
     }
 
     if(game.checkGameOver()) {
