@@ -11,7 +11,7 @@
 
 
 //11. Criar uma classe para o Jogo X
-//12. Vence o melhor de 5 
+//12. Vence o melhor de n rounds X
 
 class RockPaperScissors {
     constructor(maxRounds) {

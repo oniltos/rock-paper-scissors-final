@@ -11,39 +11,36 @@
     <title>Pedra, Papel e Tesoura</title>
 </head>
 <body>
-    <h1>Pedra, Papel e Tesoura</h1>
-    <p id="score-label">Placar</p>
-    <div class="score">
-        <div class="person-score">
-            Person: <span>0</span>
+    <div class="container">
+        <h1>Pedra, Papel e Tesoura</h1>
+        <div class="score">
+            <p class="person-score">You <span>0</span></p>
+            <p> X </p>
+            <p class="cpu-score"> <span> 0</span> CPU</p>
         </div>
-        <div> X </div>
-        <div class="cpu-score">
-            CPU: <span>0</span>
-        </div>
-    </div>
-    <div class="choices">
-        <div class="person-choice">
-            <p>Person</p>
-            <p class="choice">
-                
-            </p>
-        </div>
-        <div class="cpu-choice">
-            <p>CPU</p>
-            <p class="choice">
+        <div class="choices">
+            <div class="person-choice">
+                <p class="choice">
+                    
+                </p>
+            </div>
+            <div class="cpu-choice">
+                <p class="choice">
 
-            </p>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="buttons">
-        <button id="rock" disabled>Pedra</button>
-        <button id="paper" disabled>Papel</button>
-        <button id="scissors" disabled>Tesoura</button>
-    </div>
-    <div class="start-reset">
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
+        <div class="controls">
+            <div class="buttons">
+                <button id="rock" class="choice-button" disabled>Pedra</button>
+                <button id="paper" class="choice-button" disabled>Papel</button>
+                <button id="scissors" class="choice-button" disabled>Tesoura</button>
+            </div>
+            <div class="start-reset">
+                <button id="start">Start</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
     </div>
     <script src="./assets/scripts/game.js"></script>
     <script src="./assets/scripts/index.js"></script>

@@ -1,4 +1,4 @@
-//1. For para eventos em botões
+//1. For para eventos em botões X
 //2. Refac de seletores
 //3. Alerta para vencedor
 //4. Animação para escolha
@@ -71,8 +71,10 @@ function resetGame() {
     disableButtons()
 }
 
-btnRock.addEventListener('click', playGame)
-btnPaper.addEventListener('click', playGame)
-btnScissors.addEventListener('click', playGame)
+const choiceButtons = document.querySelectorAll('.choice-button')
+choiceButtons.forEach((button) => {
+    button.addEventListener('click', playGame)
+})
+
 btnReset.addEventListener('click', resetGame)
 btnStart.addEventListener('click', enableButtons)
