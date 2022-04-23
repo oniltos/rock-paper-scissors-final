@@ -24,6 +24,10 @@ const winAudio = document.getElementById('win-audio')
 const loseAudio = document.getElementById('lose-audio')
 const gameBgAudio = document.getElementById('game-bg-audio')
 const tieAudio = document.getElementById('tie-audio')
+const endMessage = document.querySelector('.end-message')
+const userWonMessage = endMessage.querySelector('.user-won')
+const cpuWonMessage = endMessage.querySelector('.cpu-won')
+const tieMessage = endMessage.querySelector('.tie-game')
 
 
 const game = new RockPaperScissors(3)
@@ -65,15 +69,22 @@ function playGame(event) {
     }
 
     if(game.checkGameOver()) {
-        setTimeout(() => {
-            alert('Game Over! The winner is the ' + game.gameWinner)
-        }, 40)
-        
+        endMessage.style.display = 'block'
+        if(game.gameWinner === 'person') {
+            userWonMessage.style.display = 'block'
+        } else if (game.gameWinner === 'cpu') {
+            cpuWonMessage.style.display = 'block'
+        } else {
+            tieMessage.style.display = 'block'
+        }
     }
 }
 
 function enableButtons() {
-    gameBgAudio.play()
+    if(gameBgAudio.classList.contains('bg-audio-active')) {
+        gameBgAudio.play()
+    }
+
     btnRock.removeAttribute('disabled')
     btnPaper.removeAttribute('disabled')
     btnScissors.removeAttribute('disabled')
@@ -93,6 +104,10 @@ function resetGame() {
     displayCpuChoice.innerHTML = ''
     displayPersonChoice.classList.remove('animate-blink')
     displayCpuChoice.classList.remove('animate-blink')
+    endMessage.style.display = 'none'
+    userWonMessage.style.display = 'none'
+    cpuWonMessage.style.display = 'none'
+    tieMessage.style.display = 'none'
     disableButtons()
 }
 

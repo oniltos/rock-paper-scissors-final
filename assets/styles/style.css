@@ -103,6 +103,17 @@ button {
     background-color: rgb(132,181,162);
 }
 
+.end-message {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    display:none;
+}
+
+.end-message p {
+    display: none
+}
+
 /*Animação borda*/
 @keyframes blink { 
     50% { 
