@@ -113,6 +113,21 @@ button {
 .end-message p {
     display: none
 }
+footer p {
+    text-align: center;
+}
+
+footer p:first-child {
+    margin-top: 50px;
+}
+
+a {
+    color: rgb(241,234,209);
+}
+
+.container.credits {
+    text-align: center;
+}
 
 /*Animação borda*/
 @keyframes blink { 
