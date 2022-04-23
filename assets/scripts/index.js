@@ -23,6 +23,9 @@ const displayCpuScore = document.querySelector('.cpu-score span')
 const game = new RockPaperScissors(3)
 
 function playGame(event) {
+    displayPersonChoice.classList.remove('animate-blink')
+    displayCpuChoice.classList.remove('animate-blink')
+
     const choice = event.currentTarget.getAttribute('id')
     const round = game.play(choice)
     
@@ -41,6 +44,12 @@ function playGame(event) {
     
     displayPersonScore.innerHTML = game.personPoints
     displayCpuScore.innerHTML = game.cpuPoints
+
+    if(game.roundWinner === 'person') {
+        displayPersonChoice.classList.add('animate-blink')
+    } else if (game.roundWinner === 'cpu') {
+        displayCpuChoice.classList.add('animate-blink')
+    }
 
     if(game.checkGameOver()) {
         setTimeout(() => {
@@ -68,6 +77,8 @@ function resetGame() {
     displayCpuScore.innerHTML = game.cpuPoints
     displayPersonChoice.innerHTML = ''
     displayCpuChoice.innerHTML = ''
+    displayPersonChoice.classList.remove('animate-blink')
+    displayCpuChoice.classList.remove('animate-blink')
     disableButtons()
 }
 

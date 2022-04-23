@@ -57,6 +57,8 @@ class RockPaperScissors {
                 this.cpuPoints++
                 this.roundWinner = 'cpu'
             }
+        } else {
+            this.roundWinner = null
         }
     }
 

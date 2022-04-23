@@ -1,6 +1,6 @@
 /**
 * Container para jogo X
-* Esquema de cores
+* Esquema de cores X
 * Centralização X
 * Estilização de botões X
 * Animação ou cor para vencedor
@@ -17,8 +17,10 @@ html {
     width: 550px;
     margin: 0 auto;
 }
+
 h1 {
     font-family: 'Major Mono Display', monospace;
+    margin: 40px 0 60px 0;
 }
 
 .choices {
@@ -99,4 +101,15 @@ button {
 #reset {
     color: rgb(241,234,209);
     background-color: rgb(132,181,162);
+}
+
+/*Animação borda*/
+@keyframes blink { 
+    50% { 
+        border-color: rgb(132,181,162) 
+    } 
+}
+
+.animate-blink {
+    animation: blink .5s step-end infinite alternate; 
 }
