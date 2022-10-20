@@ -1,17 +1,14 @@
-//1. Dois jogadores jogam ao mesmo tempo X
-//2. Um jogador é uma pessoa e o outro é a CPU X
-//3. Pedra vence Tesoura X
-//4. Papel vence Pedra X
-//5. Tesoura vence Papel X
-//6. Se os dois escolherem o mesmo item, dá empate  X
-//7. A pontuação total de cada jogador seja exibida X
-//8. A escolha atual de cada jogador seja exibida X
-//9. A pontuação possa ser "resetada" X
-//10. O jogo só pode começar depois de um sinal de start X
-
-
-//11. Criar uma classe para o Jogo X
-//12. Vence o melhor de n rounds X
+//1. Dois jogadores jogam ao mesmo tempo 
+//2. Um jogador é uma pessoa e o outro é a CPU 
+//3. Pedra vence Tesoura 
+//4. Papel vence Pedra 
+//5. Tesoura vence Papel 
+//6. Se os dois escolherem o mesmo item, dá empate  
+//7. A pontuação total de cada jogador seja exibida 
+//8. A escolha atual de cada jogador seja exibida 
+//9. A pontuação possa ser "resetada" 
+//10. O jogo só pode começar depois de um sinal de start 
+//11. Vence o melhor de n rounds 
 
 class RockPaperScissors {
     constructor(maxRounds) {

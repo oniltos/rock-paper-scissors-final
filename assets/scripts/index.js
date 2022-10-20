@@ -1,15 +1,3 @@
-//1. For para eventos em botões X
-//2. Refac de seletores
-//3. Alerta para vencedor
-//4. Animação para escolha
-//5. Audio para escolha
-//6. Audio para vencedor
-
-
-
-
-
-
 const btnRock = document.getElementById('rock')
 const btnPaper = document.getElementById('paper')
 const btnScissors = document.getElementById('scissors')
@@ -24,38 +12,61 @@ const winAudio = document.getElementById('win-audio')
 const loseAudio = document.getElementById('lose-audio')
 const gameBgAudio = document.getElementById('game-bg-audio')
 const tieAudio = document.getElementById('tie-audio')
+const drumAudio = document.getElementById('drum-audio')
 const endMessage = document.querySelector('.end-message')
 const userWonMessage = endMessage.querySelector('.user-won')
 const cpuWonMessage = endMessage.querySelector('.cpu-won')
 const tieMessage = endMessage.querySelector('.tie-game')
 
+gameBgAudio.volume = .2 
+winAudio.volume = .3
+loseAudio.volume = .3
+tieAudio.volume = .3
+drumAudio.volume = .3
+
+let audio = true
+
 
 const game = new RockPaperScissors(3)
 
+function changeChoiceImage(parent, source) {
+    parent.innerHTML = ''
+    const image = document.createElement('img')
+    image.setAttribute('src', `./assets/img/${source}.svg`)
+    image.setAttribute('width', '50px')
+    parent.appendChild(image)
+}
 
-function playGame(event) {
-    displayPersonChoice.classList.remove('animate-blink')
-    displayCpuChoice.classList.remove('animate-blink')
+function playDrum() {
+    drumAudio.play()
+    gameBgAudio.volume = .05
+}
 
-    const choice = event.currentTarget.getAttribute('id')
-    const round = game.play(choice)
-    
-    displayPersonChoice.innerHTML = ''
-    displayCpuChoice.innerHTML = ''
+function stopDrum() {
+    drumAudio.pause()
+    drumAudio.currentTime = 0
+    gameBgAudio.volume = .2
+}
 
-    const personChoiceImage = document.createElement('img')
-    personChoiceImage.setAttribute('src', `./assets/img/${round.personsCurrentChoice}.svg`)
-    personChoiceImage.setAttribute('width', '50px')
-    displayPersonChoice.appendChild(personChoiceImage)
-    
-    const cpuChoiceImage = document.createElement('img')
-    cpuChoiceImage.setAttribute('src', `./assets/img/${round.cpusCurrentChoice}.svg`)
-    cpuChoiceImage.setAttribute('width', '50px')
-    displayCpuChoice.appendChild(cpuChoiceImage)
-    
-    displayPersonScore.innerHTML = game.personPoints
-    displayCpuScore.innerHTML = game.cpuPoints
+function cpuChoice(game, round, callback) {
+    const images = ['rock', 'paper', 'scissors']
+    count = 0
+    playDrum()
 
+    const intervalId = setInterval(() => {
+        const rand = Math.floor(Math.random() * images.length)
+        changeChoiceImage(displayCpuChoice, images[rand])
+        count += 150
+        if(count>3000) {
+            clearInterval(intervalId)
+            stopDrum()
+            changeChoiceImage(displayCpuChoice, round.cpusCurrentChoice)
+            callback(game)
+        }
+    }, 150);
+}
+
+function checkWinner(game) {
     if(game.roundWinner === 'person') {
         displayPersonChoice.classList.add('animate-blink')
         winAudio.play()
@@ -68,6 +79,9 @@ function playGame(event) {
         tieAudio.play()
     }
 
+    displayPersonScore.innerHTML = game.personPoints
+    displayCpuScore.innerHTML = game.cpuPoints
+
     if(game.checkGameOver()) {
         endMessage.style.display = 'block'
         if(game.gameWinner === 'person') {
@@ -78,6 +92,18 @@ function playGame(event) {
             tieMessage.style.display = 'block'
         }
     }
+}
+
+
+function playGame(event) {
+    displayPersonChoice.classList.remove('animate-blink')
+    displayCpuChoice.classList.remove('animate-blink')
+
+    const choice = event.currentTarget.getAttribute('id')
+    const round = game.play(choice)
+
+    changeChoiceImage(displayPersonChoice, round.personsCurrentChoice)
+    cpuChoice(game, round, checkWinner)
 }
 
 function enableButtons() {
@@ -112,24 +138,22 @@ function resetGame() {
 }
 
 function toogleAudio() {
-    if(gameBgAudio.classList.contains('bg-audio-active')) {
+    if(audio === true) {
         gameBgAudio.pause()
-        gameBgAudio.classList.remove('bg-audio-active')
-        gameBgAudio.classList.add('bg-audio-inactive')
+        audio = false
         btnAudio.innerText = 'Music OFF'
     } else {
         gameBgAudio.play()
-        gameBgAudio.classList.remove('bg-audio-inactive')
-        gameBgAudio.classList.add('bg-audio-active')
+       audio = true
         btnAudio.innerText = 'Music ON'
     }
 }
 
 const choiceButtons = document.querySelectorAll('.choice-button')
 choiceButtons.forEach((button) => {
-    button.addEventListener('click', playGame)
+    button.onclick = playGame
 })
 
-btnReset.addEventListener('click', resetGame)
-btnStart.addEventListener('click', enableButtons)
-btnAudio.addEventListener('click', toogleAudio)
+btnReset.onclick = resetGame
+btnStart.onclick = enableButtons
+btnAudio.onclick = toogleAudio
